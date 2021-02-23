@@ -14,15 +14,30 @@ const onClickAdd = () => {
   const donebtn = document.createElement("button");
   donebtn.innerText = "done";
   donebtn.addEventListener("click", () => {
-    console.log("done");
+    deleteBtn(donebtn.parentNode);
+
+    // 追加要素
+    const addTarget = donebtn.parentNode;
+    const text = addTarget.firstElementChild.innerText;
+
+    addTarget.textContent = null;
+    const doneLi = document.createElement("li");
+    doneLi.innerText = text;
+
+    const backBtn = document.createElement("button");
+    backBtn.innerText = "back";
+
+    addTarget.appendChild(doneLi);
+    addTarget.appendChild(backBtn);
+
+    document.getElementById("done-list").appendChild(addTarget);
   });
 
   // 削除ボタン
   const delbtn = document.createElement("button");
   delbtn.innerText = "delete";
   delbtn.addEventListener("click", () => {
-    const delTarget = delbtn.parentNode;
-    document.getElementById("incomp-list").removeChild(delTarget);
+    deleteBtn(delbtn.parentNode);
   });
 
   div.appendChild(li);
@@ -30,6 +45,11 @@ const onClickAdd = () => {
   div.appendChild(delbtn);
 
   document.getElementById("incomp-list").appendChild(div);
+};
+
+// 削除
+const deleteBtn = (target) => {
+  document.getElementById("incomp-list").removeChild(target);
 };
 
 document

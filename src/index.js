@@ -21,7 +21,8 @@ const onClickAdd = () => {
   const delbtn = document.createElement("button");
   delbtn.innerText = "delete";
   delbtn.addEventListener("click", () => {
-    console.log("del");
+    const delTarget = delbtn.parentNode;
+    document.getElementById("incomp-list").removeChild(delTarget);
   });
 
   div.appendChild(li);
